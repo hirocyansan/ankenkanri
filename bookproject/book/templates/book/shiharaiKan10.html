@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title%}ページ1{% endblock %}
+
+{% block content %}
+
+
+<div class="card bg-light mb-3" style="max-width: 600pt;">
+  <div class="card-header"><h3>現状の進捗</h3></div>
+  <div class="card-body">
+    <h5 class="card-title">選択したテーマ</h5>
+    <p class="card-text">
+   <h6>
+      {% for obj in q %}
+        案件番号＝{{ obj.kanriNo }}、ステータス＝{{ obj.status }}、コード＝{{ obj.statusCode }}、経理承認＝{{ obj.keiriShonin}}、支払パターン＝{{ obj.shiharaiPattern }}、案件名＝{{ obj.ankenMei }}
+      {% endfor %}
+    </h6>    
+    </p>
+  </div>
+</div>
+  <div>
+    <h3>shiharaiKan10</h3>
+
+  </div>
+{% endblock content %}
