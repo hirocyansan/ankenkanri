@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title%}ページ1{% endblock %}
+
+{% block content %}
+
+
+<div class="card bg-light mb-3" style="max-width: 600pt;">
+  <div class="card-header"><div class="p-3 mb-2 bg-info text-white"><h3>現状の進捗</h3></div></div>
+  <div class="card-body">
+    <h5 class="card-title">選択したテーマ</h5>
+    <p class="card-text">
+   <h6>
+      {% for obj in q %}
+        案件番号＝{{ obj.kanriNo }}、ステータス＝{{ obj.status }}、コード＝{{ obj.statusCode }}、経理承認＝{{ obj.keiriShonin}}、支払パターン＝{{ obj.shiharaiPattern }}、案件名＝{{ obj.ankenMei }}
+      {% endfor %}
+    </h6>    
+    </p>
+  </div>
+</div>
+
+<div class="card bg-light mb-3" style="max-width: 600pt;">
+  <div class="card-header"><div class="p-3 mb-2 bg-info text-white"><h3>支払処理完了</h3></div></div>
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+    <nobr>
+    <p class="card-text">支払完了の場合「確定」、そうではない場合は「前画面に戻る」又は「TOPへ戻る」を押してください。:
+
+        <form action="/book/shiharaiSave" method="POST">{% csrf_token %}
+          <button class="btn btn-primary" type="submit" name="confirm" style="width:120pt;height:35pt;margin: 5px 5px;"> 確定</button> &nbsp;&nbsp; 
+          <button class="btn btn-primary" type="submit" name="pagePrev" style="width:120pt;height:35pt;margin: 5px 5px;"> 前画面に戻る</button> &nbsp;&nbsp; 
+          <button class="btn btn-primary" type="submit" name="pageTop" style="width:120pt;height:35pt;margin: 5px 5px;"> TOPへ戻る</button> &nbsp;&nbsp; 
+        </form>
+        </div>
+      </div>
+    </div>
+
+
+{% endblock content %}
